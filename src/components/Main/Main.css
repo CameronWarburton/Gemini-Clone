@@ -178,3 +178,19 @@
     font-weight: 300;
     line-height: 1.8;
 }
+
+@media (max-width:600px) {
+    .main__bottom input {
+        flex: none;
+        width: 150px;
+    }
+    .main__bottom img {
+        width: 20px;
+    }
+    .search__box {
+        padding: 5px 10px;
+    }
+    .search__box div {
+        gap: 5px;
+    }
+}
