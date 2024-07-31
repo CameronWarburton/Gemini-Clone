@@ -7,6 +7,19 @@ const Main = () => {
 
   const {onSent, recentPrompt, showResult, loading, resultData, setInput, input} = useContext(Context)
 
+    const handleSend = () => {
+      if (input.trim() !== '') {
+        onSent(); 
+        setInput(''); 
+      }
+    };
+
+    const handleKeyDown = (e) => {
+      if (e.key === 'Enter') {
+        handleSend();
+      }
+    };
+
   return (
     <div className="main">
       <div className="nav">
@@ -63,11 +76,18 @@ const Main = () => {
         
         <div className="main__bottom">
             <div className="search__box">
-              <input onChange={(e) => setInput(e.target.value)} value={input} type="text" placeholder="Enter a prompt here" />
+              <input onChange={(e) => setInput(e.target.value)} value={input}  onKeyDown={handleKeyDown} type="text" placeholder="Enter a prompt here" />
               <div>
                 <img src={assets.gallery_icon} alt="" />
                 <img src={assets.mic_icon} alt="" />
-                {input?<img onClick={() => onSent()} src={assets.send_icon} alt="" />:null}
+                {input && (
+          <img
+            onClick={handleSend}
+            src={assets.send_icon}
+            alt="Send"
+            className="send__icon"
+          />
+        )}
               </div>
             </div>
             <p className="bottom__info">
